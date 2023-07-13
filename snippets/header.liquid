@@ -38,4 +38,12 @@
         {%endif%}
         {%endfor%}
     </ul> {% endcomment %}
+
+
+    {% if settings.show_checkbox %}
+    <form action="/search">
+        <input type="search" name="q" />
+        <button type="submit">Search</button>
+    </form>
+    {% endif %}
 </header>

@@ -1,0 +1,16 @@
+<!--This will apply in /collections/all page-->
+{% comment %} <h1>{{ collection.title }} </h1>
+
+{% for product in collection.products %}
+{% render 'product-item', product: product %}
+{% endfor %} {% endcomment %}
+
+<!--With pagination-->
+{% paginate collection.products by 4 %}
+<h1>{{ collection.title }} </h1>
+
+{% for product in collection.products %}
+{% render 'product-item', product: product %}
+{% endfor %}
+{{ paginate | default_pagination }}
+{% endpaginate %}

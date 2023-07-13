@@ -1,0 +1,19 @@
+<h1>Collection</h1>
+
+{% paginate collections by 4 %}
+
+{% for collection in collections %}
+<div class="collection">
+    <a href="{{ collection.url }}">
+        <h2>{{ collection.title }}</h2>
+        <p> {{ collection.all_products_count }} </p>
+        {% comment %} <img src="{{ collection.featured_image | image_url: width: 200}}" />
+        <p> {{ collection.description }} </p>
+        <p><b> {{ collection.price | money }} </b></p> {% endcomment %}
+    </a>
+
+</div>
+
+{% endfor %}
+{{ paginate | default_pagination }}
+{% endpaginate %}

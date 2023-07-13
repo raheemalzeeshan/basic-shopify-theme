@@ -1,0 +1,76 @@
+<header>
+  <h1>{{ shop.name }}</h1>
+
+  <!-- Main menu -->
+  {% for link in linklists.main-menu.links %}
+    <ul>
+      <li>
+        {% comment %} <a href="{{ link.url }}" rel="noopener noreferrer">{{ link.title }}</a> {% endcomment %}
+        {{ link.title | link_to: link.url }}
+      </li>
+    </ul>
+  {% endfor %}
+
+  <!-- Nested Main menu -->
+
+  {% comment %} <ul id="parent-menu">
+  {% for link in linklists.main-menu.links %}
+  <li>
+  {{ link.title | link_to: link.url }}
+  </li>
+  {% if link.links != blank %}
+  <ul id="child-menu">
+  {%for child-menu in link.links %}
+  <li>
+  {{ child-menu.title | link_to: child-menu.url }}
+  </li>
+  {% if child-menu.links != blank %}
+  <ul id="megachild-menu">
+  {% for megachild-menu in child-menu.links %}
+  <li>
+  {{ megachild-menu.title | link_to: megachild-menu.url }}
+  </li>
+  {%endfor%}
+  </ul>
+  {%endif%}
+  {%endfor%}
+  </ul>
+  {%endif%}
+  {%endfor%}
+  </ul> {% endcomment %}
+  {% if section.settings.show_search %}
+    <form action="/search">
+      <input type="search" name="q" />
+      <button type="submit">Search</button>
+    </form>
+  {% endif %}
+</header>
+
+<style>
+    header {
+  background-color: {{ section.settings.bg }}
+  ;
+}
+</style>
+{% stylesheet %}
+    header {
+        padding: 1.5rem;
+    }
+{% endstylesheet %}
+{% schema %}
+  {
+    "name": "Header",
+    "settings": [
+      {
+        "type": "checkbox",
+        "id": "show_search",
+        "label": "Show search form"
+       
+      }, {
+        "type": "color",
+        "id": "bg",
+        "label": "Background Color"
+      }
+    ]
+  }
+{% endschema %}

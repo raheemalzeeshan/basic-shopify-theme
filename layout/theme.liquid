@@ -11,7 +11,8 @@
 </head>
 
 <body>
-  {% render 'header' %}
+  {% comment %} {% render 'header' %}  For snippet {% endcomment %}
+  {%  section 'header' %}
   {{ content_for_layout }}
 
 </body>
